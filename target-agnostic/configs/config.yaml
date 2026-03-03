@@ -1,0 +1,25 @@
+# Main configuration (target-agnostic)
+# Available datasets: dataset/gender.yaml, dataset/df_2024.yaml, dataset/rosbank.yaml
+
+# Dataset config (path relative to this file or absolute)
+dataset: "dataset/df_2024.yaml"
+
+# Model configuration (gpt_oss for JSON output)
+model:
+  name: "openai/gpt-oss-120b"
+  # name: "meta-llama/Llama-3.3-70B-Instruct"
+  tensor_parallel_size: 8
+  gpu_memory_utilization: 0.9
+  max_model_len: 100000
+  enable_prefix_caching: true
+  dtype: "bfloat16"
+
+# Sampling parameters
+sampling:
+  temperature: 0.0
+  top_p: 0.95
+  max_tokens: 8192
+
+# Inference configuration
+inference:
+  num_shots: 16

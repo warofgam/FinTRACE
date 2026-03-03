@@ -1,0 +1,81 @@
+# Dataset configuration for Rosbank (churn prediction)
+# By analogy with sakhno/reasoning/finetuning/config.py
+
+# Paths (relative to project or config location)
+data_dir: "../../reasoning/data"
+stats_csv: "../../reasoning/data/stats.csv"
+test_ids_csv: "../../reasoning/data/sber_ai_test_ids.csv"
+
+# Column names
+id_col: "cl_id"
+target_col: "target_flag"
+
+# Mapping from original column names to human-readable names (only features in use)
+feature_mapping:
+  transaction_count: "Number of transactions"
+  transaction_period: "Active transaction period (days)"
+  avg_transaction_per_day: "Average transactions per day"
+  avg_transaction_interval: "Average interval between transactions (days)"
+  total_income: "Total income amount (RUB)"
+  avg_received: "Average incoming amount (RUB)"
+  total_expenses: "Total expenses amount (RUB)"
+  avg_spent: "Average transaction amount (RUB)"
+  total_sum: "Net sum of all transactions (RUB)"
+  income_expense_ratio: "Income / expense ratio"
+  most_active_weekday: "Most active weekday (0=Mon)"
+  weekend_activity_share: "Share of transactions on weekends"
+  daily_activity_std: "Std of daily transaction counts"
+  days_since_last_tx: "Days since last transaction"
+  unique_mcc_cnt: "Number of unique MCCs"
+  mcc_entropy: "Entropy of MCC distribution"
+  mcc_diversity: "MCC diversity (unique/transaction)"
+  unique_transaction_days: "Number of active days"
+  transaction_days_share: "Share of days with transactions"
+  median_expense_amount: "Median transaction amount (RUB)"
+  var_expense_amount: "Variance of transaction amounts"
+  std_expense_amount: "Std of transaction amounts"
+  large_tx_ratio: "Ratio of large (>95-perc) transactions"
+  activity_drop_ratio: "30-day activity drop ratio"
+  tx_on_first_day_cnt: "Transactions on first day of month"
+  tx_on_first_day_share: "Share of transactions on first day of month"
+  weekend_spent: "Total spend on weekends (RUB)"
+  weekday_spent: "Total spend on weekdays (RUB)"
+  weekend_weekday_spent_ratio: "Weekend / weekday spend ratio"
+
+# Feature categories for organized display (human-readable names)
+transaction_frequency_features:
+  - "Number of transactions"
+  - "Average transactions per day"
+  - "Average interval between transactions (days)"
+  - "Number of active days"
+  - "Share of days with transactions"
+  - "Active transaction period (days)"
+
+temporal_pattern_features:
+  - "Most active weekday (0=Mon)"
+  - "Share of transactions on weekends"
+  - "Transactions on first day of month"
+  - "Share of transactions on first day of month"
+  - "Std of daily transaction counts"
+  - "30-day activity drop ratio"
+
+financial_metric_features:
+  - "Total income amount (RUB)"
+  - "Average incoming amount (RUB)"
+  - "Total expenses amount (RUB)"
+  - "Average transaction amount (RUB)"
+  - "Net sum of all transactions (RUB)"
+  - "Income / expense ratio"
+  - "Median transaction amount (RUB)"
+  - "Variance of transaction amounts"
+  - "Ratio of large (>95-perc) transactions"
+
+spending_pattern_features:
+  - "Total spend on weekends (RUB)"
+  - "Total spend on weekdays (RUB)"
+  - "Weekend / weekday spend ratio"
+
+mcc_pattern_features:
+  - "Number of unique MCCs"
+  - "Entropy of MCC distribution"
+  - "MCC diversity (unique/transaction)"

@@ -1,0 +1,32 @@
+# Dataset configuration for DataFusion 2024
+# Feature categories from df_stats.csv
+
+# Paths (relative to project or config location)
+data_dir: "../../reasoning/data/datafusion2024"
+stats_csv: "../../reasoning/data/datafusion2024/df_stats.csv"
+test_ids_csv: "../../reasoning/data/datafusion2024/test_ids_sampled_25.csv"
+
+# Column names
+id_col: "user_id"
+target_col: "target"
+
+# Feature categories for organized display
+transaction_frequency_features:
+  - "Total number of transactions"
+  - "Daily transaction frequency rate"
+
+temporal_pattern_features:
+  - "Mean time between purchases"
+  - "Consistency of transaction timing"
+  - "Total customer lifetime duration"
+
+financial_metric_features:
+  - "Total cumulative spending volume"
+  - "Average value per transaction"
+  - "Transaction amount standard deviation"
+  - "Maximum single transaction value"
+
+spending_pattern_features:
+  - "Diversity of spending categories"
+
+mcc_pattern_features: []
