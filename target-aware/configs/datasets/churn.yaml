@@ -1,0 +1,41 @@
+task: churn
+data_dir: ../../data  # relative to repo or absolute
+stats_csv: stats.csv
+test_ids_csv: sber_ai_test_ids.csv
+id_col: cl_id
+target_col: target_flag
+rules_file: rules/churn.txt
+
+# Churn: target_flag 0 = churn (Verdict YES), 1 = loyal (Verdict NO)
+verdict_output: [YES, NO]  # model outputs YES or NO
+verdict_to_label: {YES: CHURN, NO: LOYAL}
+pos_label: CHURN  # for F1
+
+# Feature mapping: stats column -> human-readable in prompt
+feature_mapping:
+  transaction_count: "Number of transactions"
+  transaction_period: "Active transaction period (days)"
+  avg_transaction_per_day: "Average transactions per day"
+  total_income: "Total income amount (RUB)"
+  avg_received: "Average incoming amount (RUB)"
+  total_expenses: "Total expenses amount (RUB)"
+  avg_spent: "Average amount spent per transaction (RUB)"
+  income_expense_ratio: "Income / expense ratio"
+  unique_transaction_days: "Number of active days"
+  transaction_days_share: "Share of days with transactions"
+  median_expense_amount: "Median value of expense transactions"
+  weekend_spent: "Total spend on weekends (RUB)"
+  activity_drop_ratio: "Activity drop ratio"
+  tx_on_first_day_cnt: "Number of transactions made on the first day of activity"
+
+# Rules file: phrase in rules -> stats column name
+rules_feature_to_col:
+  "length of the customer's transaction activity period (in days)": transaction_period
+  "total amount of expenses": total_expenses
+  "total amount spent during weekends": weekend_spent
+  "median value of expense transactions": median_expense_amount
+  "average amount spent per transaction": avg_spent
+  "total amount of funds received": total_income
+  "average amount received per transaction": avg_received
+  "ratio indicating drop in transaction activity over time": activity_drop_ratio
+  "number of transactions made on the first day of activity": tx_on_first_day_cnt

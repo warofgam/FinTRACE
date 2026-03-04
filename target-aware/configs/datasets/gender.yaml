@@ -1,0 +1,60 @@
+task: gender
+data_dir: ../../data/gender
+stats_csv: sakhno_stats_dataset_renamed.csv
+test_ids_csv: test_ids.csv
+id_col: customer_id
+target_col: gender
+rules_file: rules/gender.txt
+
+# Gender: 0 = Female, 1 = Male. Model outputs Verdict: Male or Female
+verdict_output: [Male, Female]
+verdict_to_label: {Male: 1, Female: 0}  # for metrics: 0/1
+pos_label: 1  # Male for F1
+labels_metric: [0, 1]
+label_names: ["0 (F)", "1 (M)"]
+
+# Feature order for profile (column names in stats CSV)
+feature_order:
+  - "Average transactions per day"
+  - "Count of all transactions"
+  - "Count of expences transactions"
+  - "Sum amount at all transactions"
+  - "Sum of expences"
+  - "Mean amount at all transactions"
+  - "Median amount at all transactions"
+  - "Median of income"
+  - "Std of expences"
+  - 'Median of expences at category "Cosmetics stores"'
+  - 'Sum of expences at category "Service stations"'
+  - 'Median of expences at category "Auto parts and accessories"'
+  - 'Sum of expences at category "Auto parts and accessories"'
+  - 'Sum of expences at category "Pharmacies"'
+  - 'Median of expences at category "Shoe stores"'
+  - 'Median of expences at category "Grocery stores, supermarkets"'
+  - 'Mean of expences at category "Cosmetics stores"'
+  - 'Median of expences at category "Ready-made women\'s clothing"'
+  - 'Sum of expences at category "Cosmetics stores"'
+  - 'Mean of expences at category "Pharmacies"'
+  - 'Median of expences at type "Cash withdrawal in ATM Sberbank of Russia"'
+  - 'Mean of expences at category "Service stations"'
+  - 'Sum of expences at type "Purchase. POS TU SB RF"'
+  - 'Median of expences at category "Timber and building materials"'
+  - 'Sum of expences at type "Purchase. POS TU Russia"'
+  - 'Sum of expences at category "Financial institutions — automatic cash withdrawal"'
+  - 'Median of expences at category "Men\'s shops and women\'s clothing"'
+  - 'Median of expences at type "Purchase. POS TU SB RF"'
+  - 'Median of expences at category "Pharmacies"'
+  - 'Mean of expences at category "Auto parts and accessories"'
+  - 'Median of expences at category "Financial institutions — automatic cash withdrawal"'
+  - 'Median of expences at category "Service stations"'
+  - 'Median of expences at category "Sale of electronic equipment"'
+  - 'Mean of expences at category "Ready-made women\'s clothing"'
+  - 'Median of expences at type "Debit from card to card for <transfer from card to card> operation via Mobile Banking (without commission)"'
+  - 'Sum of expences at type "Payment for the service. ATMs of the Security Council of the Russian Federation"'
+  - 'Median of expences at type "Purchase. POS TU Russia"'
+  - 'Sum of expences at category "Ready-made women\'s clothing"'
+  - 'Sum of expences at type "Cash withdrawal in ATM Sberbank of Russia"'
+  - 'Median of expences at category "Clothing for the whole family"'
+
+# Optional: few_shot_ids.txt to restrict train to specific IDs (path relative to data_dir)
+few_shot_ids_file: null

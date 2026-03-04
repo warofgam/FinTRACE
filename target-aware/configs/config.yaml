@@ -1,0 +1,52 @@
+# Target-aware pipeline: dataset creation, SFT, inference
+# Usage: set task and dataset path; override via --config or env
+
+task: churn  # churn | gender
+dataset: datasets/churn.yaml  # relative to configs/
+
+data_dir: null  # override per dataset or set base path (default from dataset config)
+
+base_model: meta-llama/Meta-Llama-3-8B-Instruct
+
+# SFT training
+sft:
+  train_data: null   # default: {data_dir}/{task}_instruct_train.jsonl
+  eval_data: null
+  output_dir: null   # default: models/llama-8b-{task}-instruct
+  max_length: 4096
+  per_device_train_batch_size: 8
+  gradient_accumulation_steps: 2
+  learning_rate: 3e-4
+  logging_steps: 5
+  num_train_epochs: 5
+  bf16: true
+  save_strategy: epoch
+  eval_strategy: epoch
+  report_to: none
+  gradient_checkpointing: true
+  # LoRA
+  lora_r: 128
+  lora_alpha: 256
+  lora_dropout: 0.05
+  lora_target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+# Inference (vLLM)
+inference:
+  checkpoint: checkpoint-108
+  model_dir: null   # default: models/llama-8b-{task}-instruct
+  test_data: null   # default: {data_dir}/{task}_instruct_test.jsonl
+  output_file: instruct_inference_results.csv
+  metrics_file: null
+  max_new_tokens: 1024
+  temperature: 0.0
+  batch_size: 1000
+  tensor_parallel_size: 8
+  max_lora_rank: 128
+  lora_request_name: sft_adapter
