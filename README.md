@@ -5,7 +5,7 @@
 **Code:** [github.com/warofgam/FinTRACE](https://github.com/warofgam/FinTRACE)
 
 <p align="center">
-  <img src="assets/fintrace_overview.svg" alt="FinTRACE overview" width="920">
+  <img src="assets/overview.png" alt="FinTRACE overview" width="900">
 </p>
 
 FinTRACE is a retrieval-first framework for knowledge-grounded reasoning over financial transaction histories. Instead of serializing raw transaction rows directly into an LLM prompt, FinTRACE converts transaction sequences into a structured behavioral knowledge base: reusable feature essences, interpretable behavioral patterns, white-box rules, and task-level evidence. The resulting context can be used for zero-shot and few-shot prediction, as well as for instruction tuning of LLMs on transaction analytics tasks.
